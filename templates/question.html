@@ -1,0 +1,67 @@
+<!doctype html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<header><title>Celebrity Juxtaposition</title></header>
+<h1>Celebrity Juxtaposition</h1>
+
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  $(function() {
+    $('h3#question').hide();
+    $('div#question').hide();
+    $('div#result').hide();
+    $('a#new_question').on('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_question', function(data) {
+        $('h3#question').text(data.question);
+        $('a#buttonA').text(data.answerA);
+        $('a#buttonB').text(data.answerB);
+        $('th#answerA').text(data.answerA);
+        $('th#answerB').text(data.answerB); 
+        $('h3#question').show();
+        $('div#question').show();
+        $('div#result').hide();
+      });
+      return false;
+    });
+    $('a#buttonA').on('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_answer', function(data){
+        $('td#aCount').text(data.aCount);
+        $('td#bCount').text(data.bCount);
+        $('div#result').show();
+        $('div#question').hide();
+      });
+      return false;
+    });
+    $('a#buttonB').on('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_answer', function(data){
+        $('td#aCount').text(data.aCount);
+        $('td#bCount').text(data.bCount);
+        $('div#result').show();
+        $('div#question').hide();
+      });
+      return false;
+    });
+  });
+</script>
+
+<body>
+  <h3 id=question>?</h3>
+  <div id=question>
+    <button type="button"><a href=# id=buttonA>?</a></button>
+    <button type="button"><a href=# id=buttonB>?</a></button>
+  </div>
+  <div id=result>
+    <table>
+      <tr>
+        <th id=answerA>?</th>
+        <th id=answerB>?</th>
+      </tr>
+      <tr>
+        <td id=aCount>?</td>
+        <td id=bCount>?</td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <br>
+  <button type="button"><a href=# id=new_question>New question</a></button>
+</body>
