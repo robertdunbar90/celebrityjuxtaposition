@@ -11,33 +11,33 @@
       $('div#question').hide();
       $('div#result').hide();
       $('button#new_question').on('click', function() {
+        $('div#result').hide('slow');
         $.getJSON($SCRIPT_ROOT + '_question', {}, function(data) {
           $('h3#question').text(data.question);
           $('button#buttonA').text(data.answerA);
           $('button#buttonB').text(data.answerB);
           $('th#answerA').text(data.answerA);
           $('th#answerB').text(data.answerB); 
-          $('h3#question').show();
-          $('div#question').show();
-          $('div#result').hide();
+          $('h3#question').show('slow');
+          $('div#question').show('slow');
         });
         return false;
       });
       $('button#buttonA').on('click', function() {
+        $('div#question').hide('slow');
         $.getJSON($SCRIPT_ROOT + '_answer', {}, function(data){
           $('td#aCount').text(data.aCount);
           $('td#bCount').text(data.bCount);
-          $('div#result').show();
-          $('div#question').hide();
+          $('div#result').show('slow');
         });
         return false;
       });
       $('button#buttonB').on('click', function() {
+        $('div#question').hide('slow');
         $.getJSON($SCRIPT_ROOT + '_answer', {}, function(data){
           $('td#aCount').text(data.aCount);
           $('td#bCount').text(data.bCount);
-          $('div#result').show();
-          $('div#question').hide();
+          $('div#result').show('slow');
         });
         return false;
       });
