@@ -1,7 +1,6 @@
 <!doctype html>
 <head>
   <header><title>Celebrity Juxtaposition</title></header>
-  <h1>Celebrity Juxtaposition</h1>
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript">
@@ -12,6 +11,8 @@
       $('div#result').hide();
       $('button#new_question').on('click', function() {
         $('div#result').hide('slow');
+        $('h3#question').hide('slow');
+        $('div#question').hide('slow');
         $.getJSON($SCRIPT_ROOT + '_question', {}, function(data) {
           $('h3#question').text(data.question);
           $('button#buttonA').text(data.answerA);
@@ -46,6 +47,7 @@
 </head>
 
 <body>
+  <h1>Celebrity Juxtaposition</h1>
   <h3 id=question>?</h3>
   <div id=question>
     <button type="button" id=buttonA>?</button>
