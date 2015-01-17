@@ -14,6 +14,7 @@
         $('h3#question').hide('slow');
         $('div#question').hide('slow');
         $.getJSON($SCRIPT_ROOT + '_question', {}, function(data) {
+          $('body').data('id', data.id);
           $('h3#question').text(data.question);
           $('button#buttonA').text(data.answerA);
           $('button#buttonB').text(data.answerB);
@@ -26,18 +27,20 @@
       });
       $('button#buttonA').on('click', function() {
         $('div#question').hide('slow');
-        $.getJSON($SCRIPT_ROOT + '_answer', {}, function(data){
-          $('td#aCount').text(data.aCount);
-          $('td#bCount').text(data.bCount);
+        var id = $('body').data('id');
+        $.getJSON($SCRIPT_ROOT + '_answer', {'id': id, 'answer': 'a'}, function(data){
+          $('td#aCount').text(data.aCount + '%');
+          $('td#bCount').text(data.bCount + '%');
           $('div#result').show('slow');
         });
         return false;
       });
       $('button#buttonB').on('click', function() {
         $('div#question').hide('slow');
-        $.getJSON($SCRIPT_ROOT + '_answer', {}, function(data){
-          $('td#aCount').text(data.aCount);
-          $('td#bCount').text(data.bCount);
+        var id = $('body').data('id');
+        $.getJSON($SCRIPT_ROOT + '_answer', {'id': id, 'answer': 'b'}, function(data){
+          $('td#aCount').text(data.aCount + '%');
+          $('td#bCount').text(data.bCount + '%');
           $('div#result').show('slow');
         });
         return false;
