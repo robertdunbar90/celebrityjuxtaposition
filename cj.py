@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request, g
 import sqlite3
 
-DATABASE = '/tmp/cj.db'
+DATABASE = 'celebs.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
