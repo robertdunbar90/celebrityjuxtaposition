@@ -15,7 +15,7 @@
         $('div#question').hide('slow');
         $.getJSON($SCRIPT_ROOT + '_question', {}, function(data) {
           $('body').data('id', data.id);
-          $('h3#question').text(data.question);
+          $('h3#question').text('Which is a better ' + data.question + '?');
           $('button#buttonA').text(data.answerA);
           $('button#buttonB').text(data.answerB);
           $('th#answerA').text(data.answerA);
