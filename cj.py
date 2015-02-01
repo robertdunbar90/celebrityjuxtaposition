@@ -51,6 +51,9 @@ def answer():
   bCount = 100*b/(a+b)
   return jsonify(aCount=aCount, bCount=bCount)
 
+@app.route('/about')
+def about():
+  return render_template('about.html')
 
 
 if __name__ == '__main__':
