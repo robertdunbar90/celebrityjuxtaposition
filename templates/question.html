@@ -11,17 +11,21 @@
       $('div#result').hide();
       $('button#new_question').on('click', function() {
         $('div#result').hide('slow');
-        $('h3#question').hide('slow');
-        $('div#question').hide('slow');
         $.getJSON($SCRIPT_ROOT + '_question', {}, function(data) {
           $('body').data('id', data.id);
-          $('h3#question').text('Which is a better ' + data.question + '?');
-          $('button#buttonA').text(data.answerA);
-          $('button#buttonB').text(data.answerB);
-          $('th#answerA').text(data.answerA);
-          $('th#answerB').text(data.answerB); 
-          $('h3#question').show('slow');
-          $('div#question').show('slow');
+          $('h3#question').hide('slow', function() {
+            $('h3#question').text('Which is a better ' + data.question + '?');
+          });
+          $('div#question').hide('slow', function() {
+            $('button#buttonA').text(data.answerA);
+            $('button#buttonB').text(data.answerB);
+          });
+          $('h3#question').show('slow', function() {
+            $('div#question').show('slow', function() {
+              $('th#answerA').text(data.answerA);
+              $('th#answerB').text(data.answerB); 
+            });
+          });
         });
         return false;
       });
