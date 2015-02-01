@@ -3,7 +3,7 @@ import sys
 
 c = []
 
-f = open('data', 'r')
+f = open('data2', 'r')
 
 for line in f:
 	p = line.strip().split(':')
