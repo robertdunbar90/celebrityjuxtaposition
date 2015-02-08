@@ -6,13 +6,17 @@
   <script type="text/javascript">
     var $SCRIPT_ROOT = location.href;
     $(function() {
+      $('body').data('ids', '');
       $('h3#question').hide();
       $('div#question').hide();
       $('div#result').hide();
       $('button#new_question').on('click', function() {
         $('div#result').hide('slow');
-        $.getJSON($SCRIPT_ROOT + '_question', {}, function(data) {
+        var ids = $('body').data('ids');
+        $.getJSON($SCRIPT_ROOT + '_question', { 'ids': ids }, function(data) {
           $('body').data('id', data.id);
+          ids = ids + ' ' + data.id
+          $('body').data('ids', ids);
           $('h3#question').hide('slow', function() {
             $('h3#question').text('Which is a better ' + data.question + '?');
           });

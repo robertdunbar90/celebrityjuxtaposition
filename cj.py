@@ -27,15 +27,19 @@ def teardown_request(exception):
 def index():
   return render_template('question.html')
 
+def parse_ids(ids):
+  return ','.join(ids.split())
+
 @app.route('/_question')
 def question():
-  v = g.db.execute('SELECT id, question, answerA, answerB FROM questions ORDER BY RANDOM() LIMIT 1;').fetchone()
+  ids = parse_ids(request.args.get('ids'))
+  v = g.db.execute('SELECT id, question, answerA, answerB FROM questions WHERE id NOT IN (?) ORDER BY RANDOM() LIMIT 1;', [ids]).fetchone()
   q = jsonify(id=v[0], question=v[1], answerA=v[2], answerB=v[3])
   return q
 
 @app.route('/_answer')
 def answer():
-  i = request.args['id']
+  i = request.args.get('id')
   v = g.db.execute('SELECT aCount, bCount FROM questions WHERE id = ?', [i]).fetchone()
   a = v[0]
   b = v[1]
