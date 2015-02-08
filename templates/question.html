@@ -10,10 +10,13 @@
       $('h3#question').hide();
       $('div#question').hide();
       $('div#result').hide();
+      $('h5#loading').fadeTo(200, 0);
       $('button#new_question').on('click', function() {
         $('div#result').hide('slow');
+        $('h5#loading').fadeTo('slow', 1);
         var ids = $('body').data('ids');
         $.getJSON($SCRIPT_ROOT + '_question', { 'ids': ids }, function(data) {
+          $('h5#loading').fadeTo(200, 0);
           $('body').data('id', data.id);
           ids = ids + ' ' + data.id
           $('body').data('ids', ids);
@@ -37,8 +40,10 @@
       });
       $('button#buttonA').on('click', function() {
         $('div#question').hide('slow');
+        $('h5#loading').fadeTo('slow', 1);
         var id = $('body').data('id');
         $.getJSON($SCRIPT_ROOT + '_answer', {'id': id, 'answer': 'a'}, function(data){
+          $('h5#loading').fadeTo(200, 0);
           $('td#aCount').text(data.aCount + '%');
           $('td#bCount').text(data.bCount + '%');
           $('div#result').show('slow');
@@ -46,9 +51,11 @@
         return false;
       });
       $('button#buttonB').on('click', function() {
+        $('h5#loading').fadeTo('slow', 1);
         $('div#question').hide('slow');
         var id = $('body').data('id');
         $.getJSON($SCRIPT_ROOT + '_answer', {'id': id, 'answer': 'b'}, function(data){
+          $('h5#loading').fadeTo(200, 0);
           $('td#aCount').text(data.aCount + '%');
           $('td#bCount').text(data.bCount + '%');
           $('div#result').show('slow');
@@ -78,8 +85,7 @@
       </tr>
     </table>
   </div>
-  <br>
-  <br>
+  <h5 id=loading>Loading...</h5>
   <button type="button" id=new_question>New question</button>
   <br>
   <br>
