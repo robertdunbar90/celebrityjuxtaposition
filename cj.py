@@ -32,8 +32,7 @@ def question():
   ids = request.args.get('ids').split()
   query = 'SELECT id, question, answerA, answerB FROM questions WHERE id NOT IN (' + ",".join("?"*len(ids)) + ') ORDER BY RANDOM() LIMIT 1;'
   v = g.db.execute(query, ids).fetchone()
-  if q:
-    q = jsonify(id=v[0], question=v[1], answerA=v[2], answerB=v[3])
+  q = jsonify(id=v[0], question=v[1], answerA=v[2], answerB=v[3])
   return q
 
 @app.route('/_answer')
@@ -50,8 +49,8 @@ def answer():
     b += 1
     g.db.execute('UPDATE questions SET bCount=? WHERE id=?;', [b, i])
     g.db.commit()
-  aCount = 100*a/(a+b)
-  bCount = 100*b/(a+b)
+  aCount = int(round(100.0*a/(a+b)))
+  bCount = int(round(100.0*b/(a+b)))
   return jsonify(aCount=aCount, bCount=bCount)
 
 @app.route('/about')
