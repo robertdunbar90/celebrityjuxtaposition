@@ -22,12 +22,14 @@
           });
           $('div#question').hide('slow', function() {
             $('button#buttonA').text(data.answerA);
+            $('th#descriptionA').text(data.descriptionA);
             $('button#buttonB').text(data.answerB);
+            $('th#descriptionB').text(data.descriptionB);
           });
           $('h3#question').show('slow', function() {
             $('div#question').show('slow', function() {
               $('th#answerA').text(data.answerA);
-              $('th#answerB').text(data.answerB); 
+              $('th#answerB').text(data.answerB);
             });
           });
         });
@@ -61,8 +63,16 @@
   <h1>Celebrity Juxtaposition</h1>
   <h3 id=question>?</h3>
   <div id=question>
-    <button type="button" id=buttonA>?</button>
-    <button type="button" id=buttonB>?</button>
+    <table>
+      <tr>
+        <th id=descriptionA>?</th>
+        <th id=descriptionB>?</th>
+      </tr>
+      <tr>
+        <td><button type="button" id=buttonA>?</button></td>
+        <td><button type="button" id=buttonB>?</button></td>
+      </tr>
+    </table>
   </div>
   <div id=result>
     <table>

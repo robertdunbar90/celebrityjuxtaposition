@@ -3,7 +3,7 @@ import sys
 
 c = []
 
-f = open('data2', 'r')
+f = open('newdata', 'r')
 
 for line in f:
 	p = line.strip().split(':')
@@ -18,4 +18,4 @@ with con:
     cur = con.cursor()    
     
     for line in c:
-    	cur.execute("INSERT INTO questions (question, answerA, answerB, aCount, bCount) VALUES(?, ?, ?, ?, ?)", line)
+    	cur.execute("INSERT INTO questions (question, answerA, descriptionA, answerB, descriptionB, aCount, bCount) VALUES(?, ?, ?, ?, ?, ?, ?)", line)

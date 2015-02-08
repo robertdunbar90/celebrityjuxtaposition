@@ -30,9 +30,9 @@ def index():
 @app.route('/_question')
 def question():
   ids = request.args.get('ids').split()
-  query = 'SELECT id, question, answerA, answerB FROM questions WHERE id NOT IN (' + ",".join("?"*len(ids)) + ') ORDER BY RANDOM() LIMIT 1;'
+  query = 'SELECT id, question, answerA, descriptionA, answerB, descriptionB FROM questions WHERE id NOT IN (' + ",".join("?"*len(ids)) + ') ORDER BY RANDOM() LIMIT 1;'
   v = g.db.execute(query, ids).fetchone()
-  q = jsonify(id=v[0], question=v[1], answerA=v[2], answerB=v[3])
+  q = jsonify(id=v[0], question=v[1], answerA=v[2], descriptionA=v[3], answerB=v[4], descriptionB=v[5])
   return q
 
 @app.route('/_answer')
