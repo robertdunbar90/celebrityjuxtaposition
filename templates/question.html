@@ -21,10 +21,10 @@
             $('h3#question').text('Which is a better ' + data.question + '?');
           });
           $('div#question').hide('slow', function() {
-            $('button#buttonA').text(data.answerA);
-            $('th#descriptionA').text(data.descriptionA);
-            $('button#buttonB').text(data.answerB);
-            $('th#descriptionB').text(data.descriptionB);
+            $('b#buttonA').text(data.answerA);
+            $('p#descriptionA').text(data.descriptionA);
+            $('b#buttonB').text(data.answerB);
+            $('p#descriptionB').text(data.descriptionB);
           });
           $('h3#question').show('slow', function() {
             $('div#question').show('slow', function() {
@@ -63,16 +63,8 @@
   <h1>Celebrity Juxtaposition</h1>
   <h3 id=question>?</h3>
   <div id=question>
-    <table>
-      <tr>
-        <th id=descriptionA>?</th>
-        <th id=descriptionB>?</th>
-      </tr>
-      <tr>
-        <td><button type="button" id=buttonA>?</button></td>
-        <td><button type="button" id=buttonB>?</button></td>
-      </tr>
-    </table>
+    <button type="button" id=buttonA><b id=buttonA></b><p id=descriptionA></p></button>
+    <button type="button" id=buttonB><b id=buttonB></b><p id=descriptionB></p></button>
   </div>
   <div id=result>
     <table>
