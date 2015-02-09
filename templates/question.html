@@ -22,18 +22,17 @@
           $('body').data('ids', ids);
           $('h3#question').hide('slow', function() {
             $('h3#question').text('Which is a better ' + data.question + '?');
+            $('h3#question').show('slow');
           });
           $('div#question').hide('slow', function() {
             $('b#buttonA').text(data.answerA);
             $('p#descriptionA').text(data.descriptionA);
             $('b#buttonB').text(data.answerB);
             $('p#descriptionB').text(data.descriptionB);
-          });
-          $('h3#question').show('slow', function() {
             $('div#question').show('slow', function() {
-              $('th#answerA').text(data.answerA);
-              $('th#answerB').text(data.answerB);
-            });
+                $('th#answerA').text(data.answerA);
+                $('th#answerB').text(data.answerB);
+              });
           });
         });
         return false;
